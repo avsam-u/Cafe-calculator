@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Café</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Calculadora de Café</h1>
+        <p>Introduce la cantidad de agua en mililitros (ml) para saber cuántas cucharadas de café necesitas.</p>
+        
+        <label for="agua">Cantidad de agua (ml):</label>
+        <input type="number" id="agua" placeholder="Ejemplo: 180" required>
+        
+        <button onclick="calcularCafe()">Calcular</button>
+        
+        <div id="resultado" class="result"></div>
+    </div>
+
+    <script>
+        function calcularCafe() {
+            // Obtener el valor de agua ingresado por el usuario
+            let agua = parseFloat(document.getElementById('agua').value);
+            
+            // Si el valor de agua no es un número válido
+            if (isNaN(agua) || agua <= 0) {
+                document.getElementById('resultado').innerText = "Por favor, ingresa una cantidad válida de agua.";
+                return;
+            }
+
+            // Proporción de café (por ejemplo, 1 cucharada por cada 180 ml de agua)
+            const proporcionCafe = 1 / 180; // 1 cucharada de café por 180 ml de agua
+            
+            // Calcular la cantidad de café necesaria
+            let cafeNecesario = agua * proporcionCafe;
+            
+            // Mostrar el resultado
+            document.getElementById('resultado').innerText = `Necesitas aproximadamente ${cafeNecesario.toFixed(2)} cucharadas de café.`;
+        }
+    </script>
+
+</body>
+</html>
